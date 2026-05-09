@@ -50,16 +50,35 @@ public class UsersService {
         try{
             Object role = UR.validateCredentials(data.get("username").toString(),data.get("password").toString());
             if(role !=null){
-                response.put("CODE:- ",200);
+                response.put("code",200);
                 response.put("jwt",JWT.generateJWT(data.get("username"),role));
             }else{
-                response.put("CODE:- ",404);
+                response.put("code",404);
                 response.put("message:- ","Invalid creds!!");
             }
         }catch (Exception e){
-            response.put("CODE:- ",500);
+            response.put("code",500);
             response.put("message:- ",e.getMessage());
         }
         return response;
     }
+	
+	public Object uinfo(String token)
+	  {
+	    Map<String, Object> response = new HashMap<>();
+	    try
+	    {
+	      Map<String, Object> payload = JWT.validateJWT(token);
+	          String email = (String) payload.get("username");
+	          Users U = (Users) UR.findByEmail(email);
+	      
+	          response.put("code", 200);
+	          response.put("fullname", U.getFullname());
+	    }catch(Exception e)
+	    {
+	      response.put("code", 500);
+	      response.put("message", e.getMessage());
+	    }
+	    return response;
+	  }
 }

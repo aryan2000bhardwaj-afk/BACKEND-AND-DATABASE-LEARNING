@@ -28,7 +28,7 @@ public class JwtService {
           .signWith(key)    
           .compact();
     }
-    public Object validateJWT(String token)throws Exception
+    public Map<String, Object> validateJWT(String token)throws Exception
     {
       Claims claims = Jwts.parser()
                 .verifyWith(key)
@@ -42,4 +42,6 @@ public class JwtService {
       payload.put("username", claims.get("username"));
       payload.put("role", claims.get("role"));
       return payload;
-    }   }
+    }   
+    
+}
