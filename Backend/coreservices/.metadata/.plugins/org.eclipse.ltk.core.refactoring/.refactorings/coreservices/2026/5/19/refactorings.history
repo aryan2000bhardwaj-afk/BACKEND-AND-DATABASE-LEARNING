@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;mth.service.JwtServices.java&apos; to &apos;JwtService.java&apos;&#x0D;&#x0A;- Original project: &apos;coreservices&apos;&#x0D;&#x0A;- Original element: &apos;mth.service.JwtServices.java&apos;&#x0D;&#x0A;- Renamed element: &apos;mth.service.JwtService.java&apos;" description="Rename compilation unit &apos;JwtServices.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;mth.service{JwtServices.java" name="JwtService.java" references="false" stamp="1778119468762" version="1.0"/>
+</session>

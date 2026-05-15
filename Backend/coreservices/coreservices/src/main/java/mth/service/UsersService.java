@@ -1,6 +1,7 @@
 package mth.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +73,11 @@ public class UsersService {
 	          String email = (String) payload.get("username");
 	          Users U = (Users) UR.findByEmail(email);
 	      
+	          List<Object>menuList = UR.getMenus(Long.valueOf(U.getRole()));
+	          
 	          response.put("code", 200);
 	          response.put("fullname", U.getFullname());
+	          response.put("menuList", menuList);
 	    }catch(Exception e)
 	    {
 	      response.put("code", 500);

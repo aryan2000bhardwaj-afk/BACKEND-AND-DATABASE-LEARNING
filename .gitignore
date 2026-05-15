@@ -1,6 +1,0 @@
-.metadata/
-Backend/coreservices/.metadata/
-node_modules/
-target/
-build/
-*.log

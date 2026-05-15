@@ -45,7 +45,31 @@
 .home .home-workspace .home-menus{
     background: var(--primary-blue);
     color: white;
+    overflow: auto;
+}
+.home .home-workspace .home-menus ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.home .home-workspace .home-menus ul li{
+    height: 40px;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    border-left: 5px solid transparent;
+}
+.home .home-workspace .home-menus ul li.active,
+.home .home-workspace .home-menus ul li:hover{
+    border-left: 5px solid var(--background);
+    cursor: pointer;
+    background: var(--primary-color);
+}
+.home .home-workspace .home-menus ul li img{
+    height: 20px;
+    margin: 0 5px;
 }
 .home .home-workspace .home-content{
     background: var(--background-secondary);
+    overflow: auto;
 }
