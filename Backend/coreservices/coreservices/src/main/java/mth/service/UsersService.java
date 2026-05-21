@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import mth.models.Users;
 import mth.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 @Service
 public class UsersService {
@@ -30,7 +32,7 @@ public class UsersService {
 	      }
 	      else
 	      {
-	        U.setRole(1);    //Setting default role to the new user
+	        U.setRole(1L);    //Setting default role to the new user
 	        U.setStatus(1);    //Make the status of the user as active
 	        
 	        UR.save(U);      //Insert into the database table (users)
@@ -45,6 +47,7 @@ public class UsersService {
 	    }
 	    return response;
 	  }
+	
 
 	public Object signin(Map<String, Object> data) {
         Map<String,Object>response = new HashMap<>();
@@ -85,4 +88,43 @@ public class UsersService {
 	    }
 	    return response;
 	  }
+	 public Object getProfile(String token)
+	    {
+	        Map<String, Object> response = new HashMap<>();
+	        try
+	        {
+	            Map<String, Object> payload = JWT.validateJWT(token);
+	            String email = (String) payload.get("username");
+	            Object user = UR.profileByEmail(email);
+
+	            response.put("code", 200);
+	            response.put("user", user);
+	        }catch(Exception e)
+	        {
+	            response.put("code", 500);
+	            response.put("message", e.getMessage());
+	        }
+	        return response;
+	    }
+	 public Object getAllUsers(int page,int size,String token){
+	        Map<String,Object>response = new HashMap<>();
+	        try{
+	            JWT.validateJWT(token);
+	            PageRequest pageable = PageRequest.of(Math.max(page - 1, 0), size); // for pagination
+	            Page<Users> users = UR.findAll(pageable);
+
+	            response.put("code", 200);
+	            response.put("page", page);
+	            response.put("size", size);
+	            response.put("totalpages", users.getTotalPages());
+	            response.put("users", users.getContent());
+
+
+	        }catch (Exception e){
+	            response.put("message",e.getMessage());
+	        }
+
+	        return response;
+	    }
+
 }

@@ -8,13 +8,13 @@ import jakarta.persistence.Table;
 @Table(name="roles")
 public class Roles {
 	@Id
-	Long Role;
+	Long role;
 	String rolename;
 	public Long getRole() {
-		return Role;
+		return role;
 	}
 	public void setRole(Long role) {
-		Role = role;
+		role = role;
 	}
 	public String getRolename() {
 		return rolename;
@@ -24,7 +24,7 @@ public class Roles {
 	}
 	@Override
 	public String toString() {
-		return "Roles [Role=" + Role + ", rolename=" + rolename + "]";
+		return "Roles [Role=" + role + ", rolename=" + rolename + "]";
 	}
 	
 

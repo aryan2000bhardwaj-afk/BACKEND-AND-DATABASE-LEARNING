@@ -18,7 +18,15 @@ public class Users {
     @Column(unique = true)
     String email;
     String password;
-    int role;
+    public Long getRole() {
+        return role;
+    }
+
+    public void setRole(Long role) {
+		this.role = role;
+	}
+
+	Long role;
     int status;
 	public Long getId() {
 		return id;
@@ -49,12 +57,6 @@ public class Users {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public int getRole() {
-		return role;
-	}
-	public void setRole(int role) {
-		this.role = role;
 	}
 	public int getStatus() {
 		return status;
