@@ -1,3 +1,3 @@
-2026/05/20-09:39:57.591 41e0 Reusing MANIFEST C:\DBMS\MicroHubManager\Backend\coreservices\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db/MANIFEST-000001
-2026/05/20-09:39:57.592 41e0 Recovering log #3
-2026/05/20-09:39:57.593 41e0 Reusing old log C:\DBMS\MicroHubManager\Backend\coreservices\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db/000003.log 
+2026/05/21-07:29:04.898 5a00 Reusing MANIFEST C:\DBMS\MicroHubManager\Backend\coreservices\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db/MANIFEST-000001
+2026/05/21-07:29:04.899 5a00 Recovering log #3
+2026/05/21-07:29:04.901 5a00 Reusing old log C:\DBMS\MicroHubManager\Backend\coreservices\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db/000003.log 

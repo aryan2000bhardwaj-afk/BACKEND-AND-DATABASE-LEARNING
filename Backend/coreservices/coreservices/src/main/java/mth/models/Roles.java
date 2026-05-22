@@ -14,7 +14,7 @@ public class Roles {
 		return role;
 	}
 	public void setRole(Long role) {
-		role = role;
+		this.role = role;
 	}
 	public String getRolename() {
 		return rolename;

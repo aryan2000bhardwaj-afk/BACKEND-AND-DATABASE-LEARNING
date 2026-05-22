@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import mth.models.Users;
 
+
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
 	
@@ -27,4 +28,6 @@ public interface UserRepository extends JpaRepository<Users, Long> {
 	
 	 @Query("select U, R from Users U left join Roles R on U.role = R.role where U.email = :email")
 	    public Object profileByEmail(@Param("email") String email);
+	 
+	 
 }

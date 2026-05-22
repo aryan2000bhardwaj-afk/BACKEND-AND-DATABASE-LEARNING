@@ -46,4 +46,9 @@ public class UsersController {
 	    public Object getAllUsers(@PathVariable("PAGE") int page,@PathVariable("SIZE") int size,@RequestHeader("token")String token){
 	        return US.getAllUsers(page,size,token);
 	    }
+	 @PostMapping("/saveuser")
+	 public Object saveUser(@RequestBody Users U,@RequestHeader String Token)
+	 {
+		 return US.saveUser(U, Token);
+	 }
 }

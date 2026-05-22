@@ -9,3 +9,11 @@ class SignupSchema(BaseModel):
     phone: str
     email: str
     password: str
+
+class UsersSchema(BaseModel):
+    fullname: str
+    phone: str
+    email: str
+    password: str
+    role: int
+    status:int
