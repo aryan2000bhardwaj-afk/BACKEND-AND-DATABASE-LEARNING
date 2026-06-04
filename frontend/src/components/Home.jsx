@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
-import { apibaseurl, callApi, imgurl } from '../lib.js';
+import { apibaseurl, callApi, imgurl } from '../lib';
 import ProgressBar from './ProgressBar';
 import Profile from './Profile';
 import UserManager from './UserManager';
+import TaskManager from './TaskManager';
 
 const Home = () => {
-
     const [fullname, setFullname] = useState("");
     const [isProgress, setIsProgress] = useState(false);
     const [token, setToken] = useState("");
@@ -15,13 +15,11 @@ const Home = () => {
     const [activeMenu, setActiveMenu] = useState(0);
 
     useEffect(() => {
-
         const storedtoken = localStorage.getItem("token");
 
         if (!storedtoken) {
             logout();
-        }
-        else {
+        } else {
             setToken(storedtoken);
             setIsProgress(true);
 
@@ -34,25 +32,16 @@ const Home = () => {
                 storedtoken
             );
         }
-
     }, []);
 
     function loadUinfo(res) {
-
-        console.log(res);
-
         setIsProgress(false);
 
-        if (res.code !== 200)
+        if (!res || res.code !== 200)
             return;
 
         setFullname(res.fullname || "");
-
-        setMenuList(
-            res.menulist ||
-            res.menuList ||
-            []
-        );
+        setMenuList(res.menuList || []);
     }
 
     function logout() {
@@ -61,82 +50,66 @@ const Home = () => {
     }
 
     function loadModule(mid) {
-
         setIsProgress(true);
         setActiveMenu(mid);
 
-        const component = {
+        const components = {
+            3: <TaskManager logout={logout} />,
             4: <UserManager logout={logout} />,
             5: <Profile logout={logout} />
         };
 
-        setActiveComponent(component[mid] || null);
+        setActiveComponent(components[mid] || null);
 
         setIsProgress(false);
     }
 
     return (
-        <div className='home'>
+        <div className="home">
+            <div className="home-header">
+                <img src="/logo.png" alt="" />
 
-            <div className='home-header'>
-
-                <img src="/logo.png" alt='' />
-
-                <div className='info'>
+                <div className="info">
                     {fullname}
-
                     <img
                         src="/shutdown.png"
-                        alt=''
-                        onClick={() => logout()}
+                        alt=""
+                        onClick={logout}
                     />
                 </div>
-
             </div>
 
-            <div className='home-workspace'>
-
-                <div className='home-menus'>
-
+            <div className="home-workspace">
+                <div className="home-menus">
                     <ul>
-
-                        {menuList?.map((m) => (
-
+                        {menuList.map((m) => (
                             <li
                                 key={m.mid}
-                                className={activeMenu === m.mid ? 'active' : ''}
+                                className={activeMenu === m.mid ? "active" : ""}
                                 onClick={() => loadModule(m.mid)}
                             >
-
                                 <img
                                     src={imgurl + m.icon}
-                                    alt=''
+                                    alt=""
                                 />
-
                                 {m.menu}
-
                             </li>
-
                         ))}
-
                     </ul>
-
                 </div>
 
-                <div className='home-content'>
+                <div className="home-content">
                     {activeComponent}
                 </div>
-
             </div>
 
-            <div className='home-footer'>
+            <div className="home-footer">
                 Copyright @ 2026. All rights reserved.
             </div>
 
             <ProgressBar isProgress={isProgress} />
-
         </div>
     );
-}
+};
 
 export default Home;

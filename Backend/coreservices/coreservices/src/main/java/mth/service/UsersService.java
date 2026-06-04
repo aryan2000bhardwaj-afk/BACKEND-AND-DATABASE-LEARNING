@@ -56,23 +56,29 @@ public class UsersService {
 	  }
 	
 
-	public Object signin(Map<String, Object> data) {
-        Map<String,Object>response = new HashMap<>();
-        try{
-            Object role = UR.validateCredentials(data.get("username").toString(),data.get("password").toString());
-            if(role !=null){
-                response.put("code",200);
-                response.put("jwt",JWT.generateJWT(data.get("username"),role));
-            }else{
-                response.put("code",404);
-                response.put("message:- ","Invalid creds!!");
-            }
-        }catch (Exception e){
-            response.put("code",500);
-            response.put("message:- ",e.getMessage());
-        }
-        return response;
-    }
+	public Object signin(Map<String, Object> data)
+	  {
+	    Map<String, Object> response = new HashMap<>();
+	    try
+	    {
+	      Users U = (Users) UR.validateCredentials(data.get("username").toString(), data.get("password").toString());   //Validate user name and password
+	      if(U != null)
+	      {
+	        response.put("code", 200);
+	        response.put("jwt", JWT.generateJWT(data.get("username"), U.getRole(), U.getId())); //Generate JWT token and return as response
+	      }
+	      else
+	      {
+	        response.put("code", 404);
+	        response.put("message", "Invalid Credentials!");
+	      }
+	    }catch(Exception e)
+	    {
+	      response.put("code", 500);
+	      response.put("message", e.getMessage());
+	    }
+	    return response;
+	  }
 	
 	public Object uinfo(String token)
 	  {
@@ -158,4 +164,21 @@ public class UsersService {
 	        return response; 
 	 }
 
+	 
+	 public Object deleteUser(Long id, String token)
+	 {
+		 Map<String,Object>response = new HashMap<>();
+		 try {
+			 JWT.validateJWT(token);
+			 UR.deleteById(id);
+			 response.put("code", 200);
+			 response.put("message", "User has beem deleted");
+		 }catch(Exception e)
+	        {
+	            response.put("code", 500);
+	            response.put("message", e.getMessage());
+	        }
+	        return response; 
+		 
+	 }
 }

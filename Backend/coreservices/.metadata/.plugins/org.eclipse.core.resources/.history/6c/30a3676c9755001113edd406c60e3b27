@@ -1,5 +1,0 @@
-package mth.repository;
-
-public interface RoleRepository {
-
-}

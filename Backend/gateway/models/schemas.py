@@ -10,10 +10,20 @@ class SignupSchema(BaseModel):
     email: str
     password: str
 
-class UsersSchema(BaseModel):
+class UserSchema(BaseModel):
     fullname: str
     phone: str
     email: str
     password: str
     role: int
     status:int
+
+class TasksSchema(BaseModel)
+    title: str
+    description: str
+    createdby: int
+    assignedto: int
+    priority: int
+    deadline: str
+    status: str
+    

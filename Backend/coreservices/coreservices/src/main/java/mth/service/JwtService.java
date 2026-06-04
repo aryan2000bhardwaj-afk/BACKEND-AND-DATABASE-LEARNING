@@ -16,11 +16,12 @@ import io.jsonwebtoken.security.Keys;
 public class JwtService {
     public final String SECRETE_KEY = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0987654321";
     public final SecretKey key = Keys.hmacShaKeyFor(SECRETE_KEY.getBytes());
-    public Object generateJWT(Object username, Object role) throws Exception
+    public Object generateJWT(Object username, Object role, Object id) throws Exception
     {
       Map<String, Object> payload = new HashMap<>();
       payload.put("username", username);
       payload.put("role", role);
+      payload.put("crid", id);
       return Jwts.builder()
           .claims(payload)
           .issuedAt(new Date())
