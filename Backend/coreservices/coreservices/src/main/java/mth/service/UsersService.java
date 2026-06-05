@@ -181,4 +181,20 @@ public class UsersService {
 	        return response; 
 		 
 	 }
+	 public Object searchUser(String key, String token)
+	  {
+	    Map<String, Object> response = new HashMap<>();
+	    try
+	    {
+	      List<Object> users = UR.searchUser(key);
+	      response.put("code", 200);
+	      response.put("users", users);
+	    }catch(Exception e)
+	    {
+	      response.put("code", 500);
+	      response.put("message", e.getMessage());
+	    }
+	    return response;
+	  }
+	 
 }

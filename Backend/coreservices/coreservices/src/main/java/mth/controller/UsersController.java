@@ -66,5 +66,9 @@ public class UsersController {
 	    ){
 	        return US.deleteUser(id,token);
 	    }
+	 @GetMapping("/searchuser/{KEY}")
+	  public Object searchuser(@PathVariable("KEY") String key, @RequestHeader String Token) {
+		 return US.searchUser(key, Token);
+}
 }
 

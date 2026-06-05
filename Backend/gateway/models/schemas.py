@@ -18,7 +18,7 @@ class UserSchema(BaseModel):
     role: int
     status:int
 
-class TasksSchema(BaseModel)
+class TasksSchema(BaseModel):
     title: str
     description: str
     createdby: int
