@@ -1,15 +1,15 @@
-from pydantic import BaseModel
-
-class SigninSchema(BaseModel):
-    username: str
-    password: str
+from pydantic import BaseModel # for authentication of data input
 
 class SignupSchema(BaseModel):
-    fullname: str
-    phone: str
-    email: str
-    password: str
-
+     fullname:str
+     phone:str
+     email:str
+     password:str
+     
+class SigninSchema(BaseModel):
+    username:str
+    password:str
+    
 class UserSchema(BaseModel):
     fullname: str
     phone: str
@@ -17,13 +17,12 @@ class UserSchema(BaseModel):
     password: str
     role: int
     status:int
-
-class TasksSchema(BaseModel):
-    title: str
-    description: str
-    createdby: int
-    assignedto: int
-    priority: int
-    deadline: str
-    status: str
     
+class TaskSchema(BaseModel):
+    title:str
+    description:str
+    createdby:int
+    assignedto:int
+    priority:int
+    deadline:str
+    status:int
